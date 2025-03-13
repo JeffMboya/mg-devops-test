@@ -1,0 +1,54 @@
+apiVersion: v1
+entries:
+  magistrala:
+  - apiVersion: v2
+    appVersion: 0.15.1
+    created: "2025-03-13T16:26:37.467069512Z"
+    dependencies:
+    - alias: supermq
+      condition: supermq.enabled
+      name: Supermq
+      repository: https://absmach.github.io/supermq-devops/
+      version: 0.16.5
+    - alias: postgresqlbootstrap
+      condition: postgresqlbootstrap.enabled
+      name: postgresql
+      repository: '@bitnami'
+      version: 15.2.10
+    - alias: postgresqlreader
+      condition: postgresqlreader.enabled
+      name: postgresql
+      repository: '@bitnami'
+      version: 15.2.10
+    - alias: postgresqlwriter
+      condition: postgresqlwriter.enabled
+      name: postgresql
+      repository: '@bitnami'
+      version: 15.2.10
+    - alias: timescaledb
+      condition: timescaledb.enabled
+      name: postgresql
+      repository: '@bitnami'
+      version: 15.2.10
+    - alias: postgresqlre
+      condition: postgresqlre.enabled
+      name: postgresql
+      repository: '@bitnami'
+      version: 15.2.10
+    description: Magistrala IoT Platform
+    digest: 39c49025de3cb4ef9b2be06155196061dcc410a8cbf0112d78de09e6e4d49927
+    home: https://abstractmachines.fr/magistrala.html
+    icon: https://avatars1.githubusercontent.com/u/13207490
+    maintainers:
+    - email: drasko.draskovic@abstractmachines.fr
+      name: drasko
+    - email: dusan.borovcanin@abstractmachines.fr
+      name: dusan
+    name: magistrala
+    sources:
+    - https://hub.docker.com/u/magistrala
+    type: application
+    urls:
+    - https://github.com/JeffMboya/mg-devops-test/releases/download/magistrala-0.15.3/magistrala-0.15.3.tgz
+    version: 0.15.3
+generated: "2025-03-13T16:26:37.467078239Z"
