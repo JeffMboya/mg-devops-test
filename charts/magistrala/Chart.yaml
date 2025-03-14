@@ -5,7 +5,7 @@ name: magistrala
 description: Magistrala IoT Platform
 icon: https://avatars1.githubusercontent.com/u/13207490
 type: application
-version: "latest"
+version: "0.15.8"
 appVersion: "0.15.1"
 home: https://abstractmachines.fr/magistrala.html
 sources:
