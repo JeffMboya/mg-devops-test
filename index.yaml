@@ -3,6 +3,56 @@ entries:
   magistrala:
   - apiVersion: v2
     appVersion: 0.15.1
+    created: "2025-03-14T05:00:07.134157873Z"
+    dependencies:
+    - alias: supermq
+      condition: supermq.enabled
+      name: Supermq
+      repository: https://absmach.github.io/supermq-devops/
+      version: 0.16.5
+    - alias: postgresqlbootstrap
+      condition: postgresqlbootstrap.enabled
+      name: postgresql
+      repository: '@bitnami'
+      version: 15.2.10
+    - alias: postgresqlreader
+      condition: postgresqlreader.enabled
+      name: postgresql
+      repository: '@bitnami'
+      version: 15.2.10
+    - alias: postgresqlwriter
+      condition: postgresqlwriter.enabled
+      name: postgresql
+      repository: '@bitnami'
+      version: 15.2.10
+    - alias: timescaledb
+      condition: timescaledb.enabled
+      name: postgresql
+      repository: '@bitnami'
+      version: 15.2.10
+    - alias: postgresqlre
+      condition: postgresqlre.enabled
+      name: postgresql
+      repository: '@bitnami'
+      version: 15.2.10
+    description: Magistrala IoT Platform
+    digest: 0779cd27efae3b172eea9ad95eec86c428547fe838cd4d6e4be2b0fa99fc0613
+    home: https://abstractmachines.fr/magistrala.html
+    icon: https://avatars1.githubusercontent.com/u/13207490
+    maintainers:
+    - email: drasko.draskovic@abstractmachines.fr
+      name: drasko
+    - email: dusan.borovcanin@abstractmachines.fr
+      name: dusan
+    name: magistrala
+    sources:
+    - https://hub.docker.com/u/magistrala
+    type: application
+    urls:
+    - https://github.com/JeffMboya/mg-devops-test/releases/download/magistrala-0.15.5/magistrala-0.15.5.tgz
+    version: 0.15.5
+  - apiVersion: v2
+    appVersion: 0.15.1
     created: "2025-03-13T16:54:29.074391514Z"
     dependencies:
     - alias: supermq
@@ -101,4 +151,4 @@ entries:
     urls:
     - https://github.com/JeffMboya/mg-devops-test/releases/download/magistrala-0.15.3/magistrala-0.15.3.tgz
     version: 0.15.3
-generated: "2025-03-13T16:54:29.0744059Z"
+generated: "2025-03-14T05:00:07.134170607Z"
