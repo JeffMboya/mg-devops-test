@@ -23,7 +23,7 @@ spec:
         app: {{ .Release.Name }}
         component: bootstrap
     spec:
-      {{- with (default .Values.defaults.image.pullSecrets .Values.bootstrap.image.pullSecrets) }}
+      {{- with (default .Values.supermq.defaults.image.pullSecrets .Values.bootstrap.image.pullSecrets) }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
