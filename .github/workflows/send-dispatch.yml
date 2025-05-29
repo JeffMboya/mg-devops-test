@@ -22,9 +22,9 @@ jobs:
             {
               "message": "Push to main branch in ${{ github.repository }}",
               "commit_sha": "${{ github.sha }}",
-              "commit_message": "${{ github.event.head_commit.message }}",
-              "pusher_name": "${{ github.event.pusher.name }}",
-              "pusher_email": "${{ github.event.pusher.email }}",
+              "commit_message": ${{ toJson(github.event.head_commit.message) }},
+              "pusher_name": ${{ toJson(github.event.pusher.name) }},
+              "pusher_email": ${{ toJson(github.event.pusher.email) }},
               "triggered_by_repo": "${{ github.repository }}"
             }
 
