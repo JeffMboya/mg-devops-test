@@ -1,32 +1,25 @@
-name: Send Repository Dispatch on Push to Main
-
+# .github/workflows/dispatch-on-main.yml
+name: Dispatch on push to main
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  dispatch_event_on_push:
+  dispatch:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Send Repository Dispatch
+      - name: Send repository_dispatch
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.REPO_DISPATCH_PAT }}
           repository: JeffMboya/helm-example
           event-type: main-push-event
-          client-payload: |
-            {
-              "message": "Push to main branch in ${{ github.repository }}",
-              "commit_sha": "${{ github.sha }}",
-              "commit_message": "${{ github.event.head_commit.message }}",
-              "pusher_name": "${{ github.event.pusher.name }}",
-              "pusher_email": "${{ github.event.pusher.email }}",
-              "triggered_by_repo": "${{ github.repository }}"
-            }
-
-      - name: Dispatch Sent
-        run: echo "Repository dispatch event 'main-push-event' sent to JeffMboya/helm-example due to push to main."
+          client-payload: >-
+            ${{ toJson({
+              message: format('Push to main branch in {0}', github.repository),
+              commit_sha: github.sha,
+              commit_message: github.event.head_commit.message,
+              pusher_name: github.event.pusher.name,
+              pusher_email: github.event.pusher.email,
+              triggered_by_repo: github.repository
+            }) }}
