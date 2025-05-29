@@ -1,34 +1,32 @@
-name: Send Repository Dispatch Event
+name: Send Repository Dispatch on Push to Main
 
 on:
-  workflow_dispatch:
-    inputs:
-      message:
-        description: 'Custom message to send in the payload'
-        required: true
-        default: 'Hello from mg-devops-test!'
-      target_tag:
-        description: 'A sample tag to send'
-        required: false
-        default: 'v1.0.0'
+  push:
+    branches:
+      - main
 
 jobs:
-  dispatch_event:
+  dispatch_event_on_push:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Send Repository Dispatch
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.REPO_DISPATCH_PAT }}
           repository: JeffMboya/helm-example
-          event-type: custom-test-event
+          event-type: main-push-event
           client-payload: |
             {
-              "message": "${{ github.event.inputs.message }}",
-              "tag": "${{ github.event.inputs.target_tag }}",
-              "triggered_by_repo": "${{ github.repository }}",
-              "sha": "${{ github.sha }}"
+              "message": "Push to main branch in ${{ github.repository }}",
+              "commit_sha": "${{ github.sha }}",
+              "commit_message": "${{ github.event.head_commit.message }}",
+              "pusher_name": "${{ github.event.pusher.name }}",
+              "pusher_email": "${{ github.event.pusher.email }}",
+              "triggered_by_repo": "${{ github.repository }}"
             }
 
       - name: Dispatch Sent
-        run: echo "Repository dispatch event 'custom-test-event' sent to JeffMboya/helm-example."
+        run: echo "Repository dispatch event 'main-push-event' sent to JeffMboya/helm-example due to push to main."
