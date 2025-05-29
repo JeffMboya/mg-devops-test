@@ -1,0 +1,34 @@
+name: Send Repository Dispatch Event
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Custom message to send in the payload'
+        required: true
+        default: 'Hello from mg-devops-test!'
+      target_tag:
+        description: 'A sample tag to send'
+        required: false
+        default: 'v1.0.0'
+
+jobs:
+  dispatch_event:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Repository Dispatch
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.REPO_DISPATCH_PAT }}
+          repository: JeffMboya/helm-example
+          event-type: custom-test-event
+          client-payload: |
+            {
+              "message": "${{ github.event.inputs.message }}",
+              "tag": "${{ github.event.inputs.target_tag }}",
+              "triggered_by_repo": "${{ github.repository }}",
+              "sha": "${{ github.sha }}"
+            }
+
+      - name: Dispatch Sent
+        run: echo "Repository dispatch event 'custom-test-event' sent to JeffMboya/helm-example."
